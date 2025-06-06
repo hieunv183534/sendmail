@@ -8,31 +8,28 @@
 </head>
 
 <body>
-
-    <form id="contact-form">
-        <input type="text" name="user_name" placeholder="Tên của bạn" required />
-        <input type="email" name="user_email" placeholder="Email của bạn" required />
-        <textarea name="message" placeholder="Nội dung" required></textarea>
-        <button type="submit">Gửi</button>
-    </form>
-
+    <button onclick="sendNotification()">Gửi thông báo</button>
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        (function () {
-            emailjs.init("QsmiZkH5A62lB8H-C");
-        })();
+        // Khởi tạo EmailJS với Public Key của bạn
+        emailjs.init("QsmiZkH5A62lB8H-C"); // Thay bằng public key trong tài khoản EmailJS
 
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
+        function sendNotification() {
+            const params = {
+                to_email: "vhieukk20000@gmail.com",         // Người nhận
+                subject: "Thông báo từ website",         // Tiêu đề
+                message: "Đây là thông báo tự động cố định từ website.",  // Nội dung
+            };
 
-            emailjs.sendForm('service_m8ixgzg', 'template_aowxicw', {})
+            emailjs.send("service_m8ixgzg", "template_aowxicw", params)
                 .then(function (response) {
-                    alert("Email đã được gửi thành công!");
+                    alert("Thông báo đã được gửi!");
                 }, function (error) {
-                    alert("Gửi email thất bại: " + JSON.stringify(error));
+                    console.error("Lỗi khi gửi:", error);
+                    alert("Gửi thất bại");
                 });
-        });
+        }
     </script>
 </body>
 
