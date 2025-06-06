@@ -18,7 +18,10 @@
             emailjs.init("QsmiZkH5A62lB8H-C"); // Replace with your EmailJS user ID
         })();
 
-        document.querySelector("button").addEventListener("click",()=>{sendEmail});
+        document.querySelector("button").addEventListener("click", () => {
+            alert(12345);
+            sendEmail();
+        });
 
         function sendEmail() {
             const templateParams = {};
