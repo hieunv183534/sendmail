@@ -9,31 +9,30 @@
 
 <body>
 
-    <button>send</button>
+    <form id="contact-form">
+        <input type="text" name="user_name" placeholder="Tên của bạn" required />
+        <input type="email" name="user_email" placeholder="Email của bạn" required />
+        <textarea name="message" placeholder="Nội dung" required></textarea>
+        <button type="submit">Gửi</button>
+    </form>
 
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function () {
-            emailjs.init("QsmiZkH5A62lB8H-C"); // Replace with your EmailJS user ID
+            emailjs.init("QsmiZkH5A62lB8H-C");
         })();
 
-        document.querySelector("button").addEventListener("click", () => {
-            alert(12345);
-            sendEmail();
-        });
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        function sendEmail() {
-            const templateParams = {};
-
-            emailjs.send("service_2e3rs3d", "template_aowxicw", templateParams)
-                .then(response => {
-                    console.log("Email sent successfully!", response.status, response.text);
-                })
-                .catch(error => {
-                    console.error("Failed to send email", error);
+            emailjs.sendForm('service_m8ixgzg', 'template_aowxicw', this)
+                .then(function (response) {
+                    alert("Email đã được gửi thành công!");
+                }, function (error) {
+                    alert("Gửi email thất bại: " + JSON.stringify(error));
                 });
-        }
+        });
     </script>
 </body>
 
