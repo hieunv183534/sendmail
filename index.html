@@ -26,7 +26,7 @@
         document.getElementById('contact-form').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            emailjs.sendForm('service_m8ixgzg', 'template_aowxicw', this)
+            emailjs.sendForm('service_m8ixgzg', 'template_aowxicw', {})
                 .then(function (response) {
                     alert("Email đã được gửi thành công!");
                 }, function (error) {
